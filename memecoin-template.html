@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMECOIN - To The Moon! 🚀</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #13151a 0%, #1a1d24 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: rgba(0,0,0,0.8);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('/api/placeholder/1920/1080') center/cover;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tokenomics-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .roadmap-phase {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #ff6b6b;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">🚀 MEMECOIN</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#tokenomics">Tokenomics</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#buy">Buy Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MEMECOIN</h1>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem;">The next generation of community-driven tokens! 🚀</p>
+            <a href="#" class="btn">Buy Now</a>
+            <a href="#" class="btn">Join Community</a>
+        </div>
+    </section>
+
+    <section id="about" class="section" data-aos="fade-up">
+        <h2>About MEMECOIN</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+            MEMECOIN is not just another token - it's a movement! Born from the depths of internet culture,
+            our community-driven project aims to revolutionize the way we think about cryptocurrency.
+            With strong tokenomics, a clear roadmap, and an amazing community, we're ready for takeoff! 🚀
+        </p>
+    </section>
+
+    <section id="tokenomics" class="section" data-aos="fade-up">
+        <h2>Tokenomics</h2>
+        <div class="tokenomics-grid">
+            <div class="tokenomics-card">
+                <h3>Total Supply</h3>
+                <p>1,000,000,000,000</p>
+            </div>
+            <div class="tokenomics-card">
+                <h3>Liquidity Lock</h3>
+                <p>2 Years</p>
+            </div>
+            <div class="tokenomics-card">
+                <h3>Buy Tax</h3>
+                <p>5%</p>
+            </div>
+            <div class="tokenomics-card">
+                <h3>Sell Tax</h3>
+                <p>5%</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap" class="section" data-aos="fade-up">
+        <h2>Roadmap</h2>
+        <div class="roadmap">
+            <div class="roadmap-phase">
+                <h3>Phase 1</h3>
+                <ul>
+                    <li>Website Launch</li>
+                    <li>Community Building</li>
+                    <li>Token Launch</li>
+                    <li>Marketing Campaign</li>
+                </ul>
+            </div>
+            <div class="roadmap-phase">
+                <h3>Phase 2</h3>
+                <ul>
+                    <li>CEX Listings</li>
+                    <li>Partnerships</li>
+                    <li>NFT Collection</li>
+                    <li>Community Events</li>
+                </ul>
+            </div>
+            <div class="roadmap-phase">
+                <h3>Phase 3</h3>
+                <ul>
+                    <li>Major CEX Listings</li>
+                    <li>Platform Development</li>
+                    <li>Ecosystem Expansion</li>
+                    <li>Global Marketing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="section">
+        <div class="social-links">
+            <a href="#">Twitter</a>
+            <a href="#">Telegram</a>
+            <a href="#">Discord</a>
+            <a href="#">Medium</a>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
