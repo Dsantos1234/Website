@@ -3,58 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEMECOIN - To The Moon! 🚀</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <title>🔥 $BASED COIN - NUMBER GO UP 📈</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.7.0/chart.min.js"></script>
     <style>
+        @keyframes rainbow {
+            0% { color: red; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            56% { color: blue; }
+            70% { color: indigo; }
+            84% { color: violet; }
+            100% { color: red; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Comic Sans MS', cursive;
         }
 
         body {
-            background: linear-gradient(135deg, #13151a 0%, #1a1d24 100%);
-            color: #ffffff;
-            line-height: 1.6;
+            background: black;
+            color: #fff;
+            overflow-x: hidden;
         }
 
-        nav {
-            background: rgba(0,0,0,0.8);
-            padding: 1rem;
+        .price-ticker {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            z-index: 100;
+            background: #ff00ff;
+            color: yellow;
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+            animation: rainbow 2s linear infinite;
+            text-shadow: 2px 2px #000;
         }
 
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .navbar {
+            margin-top: 50px;
+            padding: 1rem;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            animation: shake 0.5s infinite;
         }
 
         .nav-links {
             display: flex;
+            justify-content: center;
             gap: 2rem;
         }
 
         .nav-links a {
             color: #fff;
             text-decoration: none;
-            font-weight: bold;
+            font-size: 24px;
+            text-shadow: 2px 2px #000;
         }
 
         .hero {
             height: 100vh;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
             text-align: center;
             background: url('/api/placeholder/1920/1080') center/cover;
             position: relative;
+            overflow: hidden;
         }
 
         .hero::before {
@@ -64,7 +111,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .hero-content {
@@ -72,68 +119,134 @@
             z-index: 1;
         }
 
-        .section {
-            padding: 5rem 1rem;
+        .hero h1 {
+            font-size: 6rem;
+            animation: rainbow 2s linear infinite;
+            text-shadow: 4px 4px #000;
+            margin-bottom: 2rem;
+        }
+
+        .spinning-logo {
+            font-size: 100px;
+            animation: spin 2s linear infinite;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .btn {
+            padding: 2rem 4rem;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            animation: shake 0.5s infinite;
+            text-shadow: 2px 2px #000;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .features {
+            padding: 5rem 2rem;
+            background: linear-gradient(45deg, #000000, #1a0000);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .tokenomics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .tokenomics-card {
-            background: rgba(255,255,255,0.1);
+        .feature-card {
+            background: linear-gradient(45deg, #ff0000, #ff00ff);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 15px;
             text-align: center;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .roadmap {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .roadmap-phase {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        .btn {
-            background: #ff6b6b;
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 25px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            margin: 1rem;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-        }
-
-        h1 {
-            font-size: 4rem;
+        .feature-card h3 {
+            font-size: 2rem;
             margin-bottom: 1rem;
-            color: #ff6b6b;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+        .tokenomics {
+            padding: 5rem 2rem;
             text-align: center;
-            color: #ff6b6b;
+            background: #000;
+        }
+
+        .tokenomics h2 {
+            font-size: 4rem;
+            animation: rainbow 2s linear infinite;
+            margin-bottom: 2rem;
+        }
+
+        .chart-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: rgba(255, 0, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .meme-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .meme {
+            position: absolute;
+            font-size: 30px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100px);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .stat-card h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, #000000, #1a0000);
         }
 
         .social-links {
@@ -144,126 +257,184 @@
         }
 
         .social-links a {
-            color: white;
+            font-size: 3rem;
+            color: #fff;
             text-decoration: none;
-            font-size: 1.5rem;
+            animation: rainbow 2s linear infinite;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-content">
-            <div class="logo">🚀 MEMECOIN</div>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#tokenomics">Tokenomics</a>
-                <a href="#roadmap">Roadmap</a>
-                <a href="#buy">Buy Now</a>
-            </div>
+    <div class="price-ticker">
+        $BASED PRICE: $0.0000069420 | 24H: +42069% 🚀 | ATH INCOMING 📈
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#about">APE IN 🦍</a>
+            <a href="#features">UTILITY 💎</a>
+            <a href="#tokenomics">NUMBERS 📊</a>
+            <a href="#community">FRENS 🫂</a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>MEMECOIN</h1>
-            <p style="font-size: 1.5rem; margin-bottom: 2rem;">The next generation of community-driven tokens! 🚀</p>
-            <a href="#" class="btn">Buy Now</a>
-            <a href="#" class="btn">Join Community</a>
-        </div>
-    </section>
-
-    <section id="about" class="section" data-aos="fade-up">
-        <h2>About MEMECOIN</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
-            MEMECOIN is not just another token - it's a movement! Born from the depths of internet culture,
-            our community-driven project aims to revolutionize the way we think about cryptocurrency.
-            With strong tokenomics, a clear roadmap, and an amazing community, we're ready for takeoff! 🚀
-        </p>
-    </section>
-
-    <section id="tokenomics" class="section" data-aos="fade-up">
-        <h2>Tokenomics</h2>
-        <div class="tokenomics-grid">
-            <div class="tokenomics-card">
-                <h3>Total Supply</h3>
-                <p>1,000,000,000,000</p>
-            </div>
-            <div class="tokenomics-card">
-                <h3>Liquidity Lock</h3>
-                <p>2 Years</p>
-            </div>
-            <div class="tokenomics-card">
-                <h3>Buy Tax</h3>
-                <p>5%</p>
-            </div>
-            <div class="tokenomics-card">
-                <h3>Sell Tax</h3>
-                <p>5%</p>
+            <div class="spinning-logo">💰</div>
+            <h1>$BASED COIN</h1>
+            <p style="font-size: 2rem; margin-bottom: 2rem;">THE MOST BASED TOKEN IN CRYPTO HISTORY</p>
+            <div>
+                <a href="#" class="btn">BUY NOW 🚀</a>
+                <a href="#" class="btn">CHART 📈</a>
             </div>
         </div>
     </section>
 
-    <section id="roadmap" class="section" data-aos="fade-up">
-        <h2>Roadmap</h2>
-        <div class="roadmap">
-            <div class="roadmap-phase">
-                <h3>Phase 1</h3>
-                <ul>
-                    <li>Website Launch</li>
-                    <li>Community Building</li>
-                    <li>Token Launch</li>
-                    <li>Marketing Campaign</li>
-                </ul>
+    <section class="stats">
+        <div class="stat-card">
+            <h3>$42M</h3>
+            <p>MARKET CAP</p>
+        </div>
+        <div class="stat-card">
+            <h3>69,420</h3>
+            <p>HOLDERS</p>
+        </div>
+        <div class="stat-card">
+            <h3>420%</h3>
+            <p>APY STAKING</p>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>💎 DIAMOND HANDS</h3>
+                <p>PAPER HANDS GET REKT<br>HODLERS GET LAMBOS</p>
             </div>
-            <div class="roadmap-phase">
-                <h3>Phase 2</h3>
-                <ul>
-                    <li>CEX Listings</li>
-                    <li>Partnerships</li>
-                    <li>NFT Collection</li>
-                    <li>Community Events</li>
-                </ul>
+            <div class="feature-card">
+                <h3>🔒 ULTRA SAFU</h3>
+                <p>LP LOCKED UNTIL HEAT DEATH OF UNIVERSE<br>TRUST US BRO</p>
             </div>
-            <div class="roadmap-phase">
-                <h3>Phase 3</h3>
-                <ul>
-                    <li>Major CEX Listings</li>
-                    <li>Platform Development</li>
-                    <li>Ecosystem Expansion</li>
-                    <li>Global Marketing</li>
-                </ul>
+            <div class="feature-card">
+                <h3>🚀 MOON SOON</h3>
+                <p>1000x GUARANTEED<br>SOURCE: TRUST ME BRO</p>
             </div>
         </div>
     </section>
 
-    <footer class="section">
+    <section class="tokenomics">
+        <h2>TOKENOMICS</h2>
+        <div class="chart-container">
+            <canvas id="tokenomicsChart"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <h2 style="font-size: 3rem; margin-bottom: 2rem; animation: rainbow 2s linear infinite;">JOIN THE BASEDNESS</h2>
         <div class="social-links">
-            <a href="#">Twitter</a>
-            <a href="#">Telegram</a>
-            <a href="#">Discord</a>
-            <a href="#">Medium</a>
+            <a href="#">🐦 TWITTER</a>
+            <a href="#">📱 TELEGRAM</a>
+            <a href="#">🎮 DISCORD</a>
         </div>
     </footer>
 
+    <div id="particles"></div>
+
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
+        // Tokenomics Chart
+        const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['LIQUIDITY 💎', 'MARKETING 📢', 'TEAM 👑', 'COMMUNITY 🫂'],
+                datasets: [{
+                    data: [42.0, 6.9, 42.0, 9.1],
+                    backgroundColor: [
+                        '#ff00ff',
+                        '#00ffff',
+                        '#ff0000',
+                        '#00ff00'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#fff',
+                            font: {
+                                family: 'Comic Sans MS',
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
         });
-    </script>
-</body>
-</html>
+
+        // Create falling meme emojis
+        const memeEmojis = ['🚀', '💎', '🦍', '🌕', '💰', '🔥'];
+        const memeRain = document.createElement('div');
+        memeRain.className = 'meme-rain';
+        document.body.appendChild(memeRain);
+
+        function createMeme() {
+            const meme = document.createElement('div');
+            meme.className = 'meme';
+            meme.style.left = Math.random() * 100 + 'vw';
+            meme.style.animationDuration = Math.random() * 3 + 2 + 's';
+            meme.textContent = memeEmojis[Math.floor(Math.random() * memeEmojis.length)];
+            memeRain.appendChild(meme);
+            setTimeout(() => meme.remove(), 5000);
+        }
+
+        setInterval(createMeme, 500);
+
+        // Create particle effect
+        const canvas = document.createElement('canvas');
+        canvas.id = 'particles';
+        document.body.appendChild(canvas);
+        const ctx2 = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        for(let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3,
+                dx: (Math.random() - 0.5) * 2,
+                dy: (Math.random() - 0.5) * 2,
+                color: `hsl(${Math.random() * 360}, 100%, 50%)`
+            });
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx2.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.x += particle.dx;
+                particle.y += particle.dy;
+                
+                if(particle.x < 0 || particle.x > canvas.width) particle.dx *= -1;
+                if(particle.y < 0 || particle.y > canvas.height) particle.dy *= -1;
+                
+                ctx2.beginPath();
+                ctx2.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx2.fillStyle = particle.color;
+                ctx2.fill();
