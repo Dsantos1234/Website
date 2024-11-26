@@ -1,314 +1,299 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥 $BASED COIN - NUMBER GO UP 📈</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.7.0/chart.min.js"></script>
-    <style>
-        @keyframes rainbow {
-            0% { color: #ff0000; }
-            20% { color: #ffa500; }
-            40% { color: #ffff00; }
-            60% { color: #00ff00; }
-            80% { color: #0000ff; }
-            100% { color: #ff0000; }
-        }
+import React, { useState, useEffect } from 'react';
+import {
+  Rocket,
+  Globe,
+  ChevronDown,
+  Users,
+  DollarSign,
+  Zap,
+  ExternalLink,
+  Atom,
+  MessageCircle,
+  Send,
+  BarChart3,
+  TrendingUp,
+  Sparkles,
+  Flame,
+  Skull
+} from 'lucide-react';
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
+// Background Components
+const UFO = () => (
+  <div className="w-12 h-12 text-green-400 opacity-20">
+    <svg viewBox="0 0 100 100">
+      <ellipse cx="50" cy="60" rx="45" ry="15" fill="currentColor"/>
+      <ellipse cx="50" cy="50" rx="25" ry="10" fill="currentColor"/>
+      <circle cx="50" cy="30" r="15" fill="currentColor"/>
+      <circle cx="50" cy="30" r="5" className="animate-pulse" fill="currentColor"/>
+    </svg>
+  </div>
+);
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-        }
+const AlienSymbol = () => (
+  <div className="w-8 h-8 text-green-400 opacity-10">
+    <svg viewBox="0 0 100 100">
+      <circle cx="50" cy="30" r="20" fill="none" stroke="currentColor" strokeWidth="4"/>
+      <line x1="50" y1="50" x2="50" y2="90" stroke="currentColor" strokeWidth="4"/>
+      <line x1="30" y1="70" x2="70" y2="70" stroke="currentColor" strokeWidth="4"/>
+    </svg>
+  </div>
+);
 
-        body {
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-        }
+const CropCircle = () => (
+  <div className="w-16 h-16 text-green-400 opacity-5">
+    <svg viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="2"/>
+      <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="2"/>
+      <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="2"/>
+      <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="2"/>
+    </svg>
+  </div>
+);
 
-        .price-ticker {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #ff00ff;
-            color: #ffff00;
-            padding: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            z-index: 1000;
-            animation: rainbow 2s linear infinite;
-        }
-
-        .navbar {
-            margin-top: 50px;
-            padding: 1rem;
-            background: linear-gradient(90deg, #ff0000, #ff00ff);
-            text-align: center;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 24px;
-            margin: 0 20px;
-            text-shadow: 2px 2px #000;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(45deg, #000000, #1a0033);
-        }
-
-        .hero h1 {
-            font-size: 6rem;
-            animation: rainbow 2s linear infinite;
-            text-shadow: 4px 4px #000;
-            margin: 20px 0;
-        }
-
-        .hero p {
-            font-size: 2rem;
-            margin: 20px 0;
-            color: #fff;
-        }
-
-        .btn {
-            padding: 20px 40px;
-            border: none;
-            border-radius: 50px;
-            background: linear-gradient(90deg, #ff0000, #ff00ff);
-            color: #fff;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px;
-            text-shadow: 2px 2px #000;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 40px 20px;
-            background: linear-gradient(45deg, #000000, #1a0033);
-        }
-
-        .stat-card {
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            min-width: 200px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .stat-card h3 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .features {
-            padding: 40px 20px;
-            background: #000;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: linear-gradient(45deg, #ff0000, #ff00ff);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .feature-card h3 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .tokenomics {
-            padding: 40px 20px;
-            text-align: center;
-            background: #000;
-        }
-
-        .tokenomics h2 {
-            font-size: 4rem;
-            animation: rainbow 2s linear infinite;
-            margin-bottom: 30px;
-        }
-
-        .chart-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 0, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-        }
-
-        footer {
-            padding: 40px 20px;
-            text-align: center;
-            background: linear-gradient(45deg, #000000, #1a0033);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .social-links a {
-            font-size: 2rem;
-            color: #fff;
-            text-decoration: none;
-            animation: rainbow 2s linear infinite;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .btn {
-                font-size: 1.5rem;
-                padding: 15px 30px;
-            }
-            .stat-card {
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="price-ticker">
-        $BASED PRICE: $0.0000069420 | 24H: +42069% 🚀 | ATH INCOMING 📈
+const Background = ({ ufoPositions, symbolPositions, circlePositions }) => (
+  <div className="fixed inset-0 bg-gradient-to-b from-gray-900 via-black to-green-900">
+    <div className="absolute inset-0" 
+         style={{
+           backgroundImage: 'linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px)',
+           backgroundSize: '50px 50px',
+           opacity: 0.2
+         }}>
     </div>
 
-    <nav class="navbar">
-        <div class="nav-links">
-            <a href="#about">APE IN 🦍</a>
-            <a href="#features">UTILITY 💎</a>
-            <a href="#tokenomics">NUMBERS 📊</a>
-        </div>
-    </nav>
+    {ufoPositions?.map((pos, i) => (
+      <div key={`ufo-${i}`} 
+           className="absolute transition-transform duration-[20s] ease-in-out animate-float"
+           style={{
+             left: `${pos.x}%`,
+             top: `${pos.y}%`,
+             transform: `rotate(${pos.rotation}deg)`,
+             animationDelay: `${pos.animationDelay}s`
+           }}>
+        <UFO />
+      </div>
+    ))}
 
-    <section class="hero" id="about">
-        <h1>$BASED COIN</h1>
-        <p>THE MOST BASED TOKEN IN CRYPTO HISTORY</p>
-        <div>
-            <a href="#" class="btn">BUY NOW 🚀</a>
-            <a href="#" class="btn">CHART 📈</a>
-        </div>
-    </section>
+    {symbolPositions?.map((pos, i) => (
+      <div key={`symbol-${i}`}
+           className="absolute animate-pulse"
+           style={{
+             left: `${pos.x}%`,
+             top: `${pos.y}%`,
+             transform: `rotate(${pos.rotation}deg)`,
+             animationDelay: `${pos.animationDelay}s`
+           }}>
+        <AlienSymbol />
+      </div>
+    ))}
 
-    <section class="stats">
-        <div class="stat-card">
-            <h3>$42M</h3>
-            <p>MARKET CAP</p>
-        </div>
-        <div class="stat-card">
-            <h3>69,420</h3>
-            <p>HOLDERS</p>
-        </div>
-        <div class="stat-card">
-            <h3>420%</h3>
-            <p>APY STAKING</p>
-        </div>
-    </section>
+    {circlePositions?.map((pos, i) => (
+      <div key={`circle-${i}`}
+           className="absolute"
+           style={{
+             left: `${pos.x}%`,
+             top: `${pos.y}%`,
+             transform: `rotate(${pos.rotation}deg)`
+           }}>
+        <CropCircle />
+      </div>
+    ))}
 
-    <section class="features" id="features">
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>💎 DIAMOND HANDS</h3>
-                <p>PAPER HANDS GET REKT<br>HODLERS GET LAMBOS</p>
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-500/5 to-transparent animate-scan"></div>
+    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/20 rounded-full filter blur-[100px] animate-pulse"></div>
+    <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-green-500/20 rounded-full filter blur-[100px] animate-pulse delay-1000"></div>
+  </div>
+);
+
+const MUBCoin = () => {
+  const [marketCap, setMarketCap] = useState(1234567);
+  const [holders, setHolders] = useState(1532);
+  const [ufoPositions, setUfoPositions] = useState([]);
+  const [symbolPositions, setSymbolPositions] = useState([]);
+  const [circlePositions, setCirclePositions] = useState([]);
+
+  useEffect(() => {
+    const generatePositions = (count) => {
+      return Array.from({ length: count }, () => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        rotation: Math.random() * 360,
+        animationDelay: Math.random() * 5
+      }));
+    };
+
+    setUfoPositions(generatePositions(6));
+    setSymbolPositions(generatePositions(12));
+    setCirclePositions(generatePositions(8));
+
+    const marketCapInterval = setInterval(() => {
+      setMarketCap(prev => prev + Math.floor(Math.random() * 10000));
+    }, 2000);
+
+    const holdersInterval = setInterval(() => {
+      setHolders(prev => prev + Math.floor(Math.random() * 5));
+    }, 5000);
+
+    return () => {
+      clearInterval(marketCapInterval);
+      clearInterval(holdersInterval);
+    };
+  }, []);
+
+  const basedFeatures = [
+    {
+      title: "NGMI PROTECTION",
+      description: "Anti-dump forcefield activated",
+      icon: <Skull className="w-8 h-8" />
+    },
+    {
+      title: "AYYLMAO TAX",
+      description: "4.20% to keep it real",
+      icon: <Sparkles className="w-8 h-8" />
+    },
+    {
+      title: "MOON SOON",
+      description: "We literally came from there",
+      icon: <Rocket className="w-8 h-8" />
+    },
+    {
+      title: "BASED AF",
+      description: "Trust us bro",
+      icon: <Flame className="w-8 h-8" />
+    }
+  ];
+
+  const basedAlienQuotes = [
+    "⟟'⋔ ⋏⍜⏁ ⎎⎍☊☍⟟⋏☌ ⌰⟒⏃⎐⟟⋏☌",
+    "⍙⟒'⍀⟒ ⏃⌰⌰ ☌⍜⋏⋏⏃ ⋔⏃☍⟒ ⟟⏁",
+    "⊑⎍⋔⏃⋏⌇ ⏃⍀⟒ ⋏☌⋔⟟"
+  ];
+
+  return (
+    <div className="relative min-h-screen text-green-400 font-mono">
+      <style jsx global>{`
+        @keyframes scan {
+          0%, 100% { transform: translateY(-100%); }
+          50% { transform: translateY(100%); }
+        }
+        .animate-scan {
+          animation: scan 15s infinite linear;
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+          animation: float 10s infinite ease-in-out;
+        }
+        @keyframes pulse-glow {
+          0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 0, 0.5); }
+          50% { text-shadow: 0 0 40px rgba(0, 255, 0, 0.8); }
+        }
+        .glow-text {
+          animation: pulse-glow 2s infinite;
+        }
+      `}</style>
+
+      <Background
+        ufoPositions={ufoPositions}
+        symbolPositions={symbolPositions}
+        circlePositions={circlePositions}
+      />
+
+      <div className="relative z-10">
+        <nav className="fixed w-full backdrop-blur-md bg-black/30 border-b border-green-500/20 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-2">
+                <Rocket className="w-8 h-8" />
+                <span className="text-2xl font-bold glow-text">$MUB</span>
+              </div>
+              <div className="hidden md:flex space-x-8">
+                <a href="#about" className="hover:text-green-300 transition">APE IN</a>
+                <a href="#tokenomics" className="hover:text-green-300 transition">NUMBERS</a>
+                <a href="#roadmap" className="hover:text-green-300 transition">MASTER PLAN</a>
+                <a href="#community" className="hover:text-green-300 transition">FRENS</a>
+              </div>
+              <button className="bg-green-500 text-black px-6 py-2 rounded-full font-bold hover:bg-green-400 transition animate-pulse">
+                BUY OR NGMI
+              </button>
             </div>
-            <div class="feature-card">
-                <h3>🔒 ULTRA SAFU</h3>
-                <p>LP LOCKED UNTIL HEAT DEATH OF UNIVERSE<br>TRUST US BRO</p>
+          </div>
+        </nav>
+
+        <section className="min-h-screen flex items-center justify-center px-4 pt-20">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="flex justify-center mb-6">
+              <div className="relative group">
+                <Atom className="w-32 h-32 text-green-500 animate-spin-slow" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-6xl group-hover:animate-bounce">👽</span>
+                </div>
+              </div>
             </div>
-            <div class="feature-card">
-                <h3>🚀 MOON SOON</h3>
-                <p>1000x GUARANTEED<br>SOURCE: TRUST ME BRO</p>
+
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 glow-text">$MUB</h1>
+            
+            <div className="mb-12">
+              {basedAlienQuotes.map((quote, index) => (
+                <p key={index} className="text-xl md:text-2xl mb-2 text-green-300 hover:scale-105 transition-transform">
+                  {quote}
+                </p>
+              ))}
             </div>
-        </div>
-    </section>
 
-    <section class="tokenomics" id="tokenomics">
-        <h2>TOKENOMICS</h2>
-        <div class="chart-container">
-            <canvas id="tokenomicsChart"></canvas>
-        </div>
-    </section>
+            <div className="text-4xl font-bold mb-12 bg-black/30 backdrop-blur-sm rounded-xl p-6 inline-block">
+              <span className="text-green-400">$</span>
+              <span className="glow-text">{marketCap.toLocaleString()}</span>
+              <div className="text-sm text-green-300 mt-2">MARKET CAP AND CLIMBING</div>
+            </div>
 
-    <footer>
-        <h2 style="font-size: 3rem; margin-bottom: 2rem; animation: rainbow 2s linear infinite;">JOIN THE BASEDNESS</h2>
-        <div class="social-links">
-            <a href="#">🐦 TWITTER</a>
-            <a href="#">📱 TELEGRAM</a>
-            <a href="#">🎮 DISCORD</a>
-        </div>
-    </footer>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {basedFeatures.map((feature, index) => (
+                <div key={index} 
+                     className="backdrop-blur-md bg-black/30 p-6 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-all hover:scale-105 group">
+                  <div className="text-green-400 mb-4 group-hover:scale-110 transition-transform">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                  <p className="text-sm text-green-300">{feature.description}</p>
+                </div>
+              ))}
+            </div>
 
-    <script>
-        const ctx = document.getElementById('tokenomicsChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['LIQUIDITY 💎', 'MARKETING 📢', 'TEAM 👑', 'COMMUNITY 🫂'],
-                datasets: [{
-                    data: [42.0, 6.9, 42.0, 9.1],
-                    backgroundColor: [
-                        '#ff00ff',
-                        '#00ffff',
-                        '#ff0000',
-                        '#00ff00'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            color: '#fff',
-                            font: {
-                                family: "'Comic Sans MS', cursive, sans-serif",
-                                size: 14
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+            <div className="flex flex-wrap justify-center gap-4 mt-12">
+              <button className="bg-green-500 text-black px-8 py-4 rounded-full font-bold hover:bg-green-400 transition transform hover:scale-105 group">
+                APE IN NOW
+                <span className="block text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                  ngmi = false
+                </span>
+              </button>
+              <button className="border-2 border-green-500 px-8 py-4 rounded-full font-bold hover:bg-green-500 hover:text-black transition transform hover:scale-105">
+                CHART
+                <span className="block text-xs">up only ser</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mt-12 text-center">
+              <div className="backdrop-blur-md bg-black/30 p-4 rounded-xl border border-green-500/20">
+                <div className="text-2xl font-bold text-green-300 glow-text">{holders.toLocaleString()}</div>
+                <div className="text-sm">DIAMOND HANDS</div>
+              </div>
+              <div className="backdrop-blur-md bg-black/30 p-4 rounded-xl border border-green-500/20">
+                <div className="text-2xl font-bold text-green-300 glow-text">4.20%</div>
+                <div className="text-sm">BASED TAX</div>
+              </div>
+              <div className="backdrop-blur-md bg-black/30 p-4 rounded-xl border border-green-500/20">
+                <div className="text-2xl font-bold text-green-300 glow-text">∞</div>
+                <div className="text-sm">POTENTIAL</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+};
+
+export default MUBCoin;
